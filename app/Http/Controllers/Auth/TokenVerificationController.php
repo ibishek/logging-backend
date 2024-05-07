@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Enums\QueuePriority;
-use App\Enums\UserRole;
 use App\Http\Controllers\Controller;
 use App\Jobs\V1\ProcessOTPGenerateJob;
-use App\Models\OrganizationUser;
 use App\Models\OTPToken;
 use App\Models\SiteAdmin;
 use App\Models\User;
@@ -28,10 +26,10 @@ class TokenVerificationController extends Controller
         /** @var User $user */
         $user = $request->user();
 
-        /** @var OTPToken $token */
+        /** @var ?OTPToken $token */
         $token = $user->activeToken();
 
-        if (!$token) {
+        if (! $token) {
             return response()->error('The token validity period has ended or we haven\'t sent you an OTP token yet.');
         }
 
@@ -44,7 +42,7 @@ class TokenVerificationController extends Controller
         $user->email_verified_at = now();
         $user->save();
 
-        $token->is_used = 1;
+        $token->is_used = true;
         $token->save();
 
         $user->notify(new OTPVerified);
