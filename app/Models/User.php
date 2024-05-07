@@ -97,9 +97,9 @@ class User extends Authenticatable
     /**
      * Get the user's honorific.
      *
-     * @return Attribute<string, string>
+     * @return Attribute<string, never>
      */
-    public function provideHonorific(): Attribute
+    protected function provideHonorific(): Attribute
     {
         return Attribute::make(get: function (?string $honorific) {
             if ($honorific) {
@@ -124,8 +124,10 @@ class User extends Authenticatable
 
     /**
      * Get the user's full name
+     *
+     * @return Attribute<string, never>
      */
-    public function fullName(): Attribute
+    protected function fullName(): Attribute
     {
         return Attribute::make(get: function () {
             return $this->first_name . ' ' . $this->last_name;

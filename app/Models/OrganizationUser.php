@@ -57,6 +57,8 @@ class OrganizationUser extends Model
 
     /**
      * Get the organization user's full display name.
+     *
+     * @return Attribute<string, never>
      */
     public function displayName(): Attribute
     {
@@ -65,8 +67,7 @@ class OrganizationUser extends Model
                 return $value;
             }
 
-            /** @property ?User $this->user */
-            return $this->user?->full_name;
+            return $this->user()?->full_name;
         });
     }
 }

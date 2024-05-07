@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\Sluggable;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
@@ -62,5 +63,17 @@ class SiteAdmin extends Model
     public function image(): MorphOne
     {
         return $this->morphOne(Image::class, 'imageable');
+    }
+
+    /**
+     * Get the site admin's full name
+     *
+     * @return Attribute<string, never>
+     */
+    protected function fullName(): Attribute
+    {
+        return Attribute::make(get: function () {
+            return $this->first_name . ' ' . $this->last_name;
+        });
     }
 }
