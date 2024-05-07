@@ -52,11 +52,11 @@ class ResponseMacro implements Macro
             ], 404);
         });
 
-        Response::macro('thrown', function (?string $message = 'Unknown error encountered while processing request.', ?int $code) {
+        Response::macro('thrown', function (?string $message, ?int $code) {
             if (in_array($code, [400, 403, 404])) {
                 return Response::json([
                     'title' => 'Unknown',
-                    'detail' => $message
+                    'detail' => $message,
                 ], $code);
             }
 
