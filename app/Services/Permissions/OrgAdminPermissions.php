@@ -36,7 +36,7 @@ class OrgAdminPermissions implements UserPermissionContract
             'user_delete',
             'leave_create',
             'leave_update',
-            'leave_delete'
+            'leave_delete',
         ];
     }
 }

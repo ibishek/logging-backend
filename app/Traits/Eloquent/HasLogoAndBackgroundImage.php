@@ -10,13 +10,15 @@ trait HasLogoAndBackgroundImage
     /**
      * Get the attached logo from the image model.
      *
-     * @return Attribute<Image, null>
+     * @return Attribute<Image, int>
      */
-    public function logo(): Attribute
+    protected function logo(): Attribute
     {
         return Attribute::make(
             get: function ($logo) {
-                if (!$logo) return null;
+                if (! $logo) {
+                    return null;
+                }
 
                 return Image::query()
                     ->where('imageable_id', $logo)
@@ -32,13 +34,15 @@ trait HasLogoAndBackgroundImage
     /**
      * Get the attached background image from the image model.
      *
-     * @return Attribute<Image, null>
+     * @return Attribute<Image, int>
      */
-    public function backgroundImage(): Attribute
+    protected function backgroundImage(): Attribute
     {
         return Attribute::make(
             get: function ($backgroundImage) {
-                if (!$backgroundImage) return null;
+                if (! $backgroundImage) {
+                    return null;
+                }
 
                 return Image::query()
                     ->where('imageable_id', $backgroundImage)

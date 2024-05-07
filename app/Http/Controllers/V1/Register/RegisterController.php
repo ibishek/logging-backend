@@ -4,11 +4,9 @@ namespace App\Http\Controllers\V1\Register;
 
 use App\DTO\UserDTO;
 use App\Enums\QueuePriority;
-use App\Enums\UserRole;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\V1\Register\RegisterStoreRequest;
 use App\Jobs\V1\ProcessOTPGenerateJob;
-use App\Models\OrganizationUser;
 use App\Services\Writes\UserRegisterService;
 use Illuminate\Http\JsonResponse;
 
