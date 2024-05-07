@@ -3,9 +3,7 @@
 namespace App\Services\Writes;
 
 use App\DTO\OrganizationUserDTO;
-use App\Models\Organization;
 use App\Models\OrganizationUser;
-use App\Models\User;
 
 class OrganizationUserWriteService
 {
@@ -17,7 +15,7 @@ class OrganizationUserWriteService
             'is_default' => $organizationUserDTO->isDefault,
             'organization_user_id' => $organizationUserDTO->organizationUserId,
             'user_id' => $organizationUserDTO->userId,
-            'organization_id' => $organizationUserDTO->organizationId
+            'organization_id' => $organizationUserDTO->organizationId,
         ]);
     }
 
