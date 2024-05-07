@@ -25,7 +25,7 @@ class Organization extends Model
         'break_time',
         'default_department_id',
         'default_project_id',
-        'owner_id'
+        'owner_id',
     ];
 
     /**
@@ -113,6 +113,8 @@ class Organization extends Model
 
     /**
      * Get the leave duration types associated with the organization.
+     *
+     * @return HasMany<LeaveDurationType>
      */
     public function leaveDuration(): HasMany
     {
