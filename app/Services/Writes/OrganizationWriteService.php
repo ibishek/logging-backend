@@ -6,7 +6,7 @@ use App\DTO\ImageDTO;
 use App\DTO\OrganizationDTO;
 use App\Models\Organization;
 use App\Models\OrganizationUser;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class OrganizationWriteService
 {
@@ -26,10 +26,13 @@ class OrganizationWriteService
             'break_time' => $organizationDTO->breakTime,
             'default_department_id' => $organizationDTO->defaultDepartmentId,
             'default_project_id' => $organizationDTO->defaultProjectId,
-            'owner_id' => Auth::id()
+            'owner_id' => Auth::id(),
         ]);
     }
 
+    /**
+     * Update organization detail.
+     */
     public function update(Organization $organization, OrganizationDTO $organizationDTO): Organization
     {
         $organization->name = $organizationDTO->name;
@@ -64,7 +67,7 @@ class OrganizationWriteService
      */
     public function attachLogo(?string $src, Organization $organization): bool
     {
-        if (!$src) {
+        if (! $src) {
             return false;
         }
 
@@ -84,9 +87,12 @@ class OrganizationWriteService
         return $organization->save();
     }
 
+    /**
+     * Attach background image to organization.
+     */
     public function attachBackgroundImage(?string $src, Organization $organization): bool
     {
-        if (!$src) {
+        if (! $src) {
             return false;
         }
 
