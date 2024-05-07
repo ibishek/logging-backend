@@ -3,6 +3,7 @@
 namespace App\Contracts;
 
 use Illuminate\Http\UploadedFile;
+use Throwable;
 
 interface FileUploadContract
 {
@@ -14,7 +15,7 @@ interface FileUploadContract
     /**
      * Method to upload file.
      */
-    public static function upload(UploadedFile $file): bool|static;
+    public static function upload(UploadedFile $file): bool|static|Throwable;
 
     /**
      * Get the modified file name.
