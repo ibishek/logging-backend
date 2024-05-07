@@ -21,7 +21,7 @@ return new class extends Migration
             $table->boolean('status')->default(0);
             $table->boolean('enable_log_title')->default(0);
             $table->foreignId('created_by')->constrained('users')->cascadeOnDelete();
-            $table->foreignId('approved_by')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('approved_by')->nullable()->constrained('users')->cascadeOnDelete();
             $table->foreignId('organization_id')->constrained('organizations')->cascadeOnDelete();
             $table->foreignId('department_id')->nullable()->constrained('departments')->nullOnDelete();
             $table->timestamps();
