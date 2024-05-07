@@ -6,9 +6,12 @@ use App\Models\Organization;
 
 class OrganizationDTO
 {
-    public string $slug;
-    public string $weekEnd;
+    public string $slug = '';
+    public ?string $weekEnd = null;
 
+    /**
+     * @param  null|array<string>  $weekEnd
+     */
     public function __construct(
         public string $name,
         public ?string $description,
@@ -17,10 +20,12 @@ class OrganizationDTO
         ?array $weekEnd,
         public string $workTime,
         public string $breakTime,
-        public ?string $defaultDepartmentId,
-        public ?string $defaultProjectId
+        public ?int $defaultDepartmentId,
+        public ?int $defaultProjectId
     ) {
         $this->slug = Organization::getSlug($this->name);
-        $this->weekEnd = json_encode($weekEnd);
+        if ($weekEnd) {
+            $this->weekEnd = (string) json_encode($weekEnd);
+        }
     }
 }
