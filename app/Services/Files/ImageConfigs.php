@@ -2,7 +2,7 @@
 
 namespace App\Services\Files;
 
-class ImageConfigs
+abstract class ImageConfigs
 {
     public static string $directory = '';
     public static ?int $width = null;
