@@ -18,7 +18,8 @@ class InitialUserResource extends JsonResource
             'name' => $this->first_name . ' ' . $this->last_name,
             'email' => $this->email,
             'email_verified' => (bool) $this->email_verified_at,
-            'gender' => $this->gender->value,
+            'gender' => $this->gender,
+            'marital_status' => $this->marital_status,
         ];
     }
 }
