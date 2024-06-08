@@ -2,7 +2,7 @@
 
 namespace App\Services\Files;
 
-use Storage;
+use Illuminate\Support\Facades\Storage;
 
 class FileRemoveService
 {

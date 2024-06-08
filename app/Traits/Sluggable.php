@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-use Str;
+use Illuminate\Support\Str;
 
 trait Sluggable
 {
