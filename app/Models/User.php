@@ -57,8 +57,6 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
-            'gender' => UserGender::class,
-            'marital_status' => UserMaritalStatus::class,
         ];
     }
 
@@ -95,6 +93,40 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the user's gender.
+     *
+     * @return Attribute<null|string, null|int>
+     */
+    public function gender(): Attribute
+    {
+        return Attribute::make(
+            get: function (?int $gender) {
+                return UserGender::gender($gender);
+            },
+            set: function (?string $gender) {
+                return UserGender::gender($gender);
+            }
+        );
+    }
+
+    /**
+     * Get the user's marital status.
+     *
+     * @return Attribute<null|string, null|int>
+     */
+    public function maritalStatus(): Attribute
+    {
+        return Attribute::make(
+            get: function (?int $status) {
+                return UserMaritalStatus::maritalStatus($status);
+            },
+            set: function (?string $status) {
+                return UserMaritalStatus::maritalStatus($status);
+            }
+        );
+    }
+
+    /**
      * Get the user's honorific.
      *
      * @return Attribute<string, never>
@@ -106,12 +138,12 @@ class User extends Authenticatable
                 return $honorific;
             }
 
-            if ($this->gender->value === UserGender::MALE->value) {
+            if ($this->gender === UserGender::MALE->value) {
                 return 'Mr.';
             }
 
-            if ($this->gender->value === UserGender::FEMALE->value) {
-                if ($this->marital_status->value === UserMaritalStatus::UNMARRIED->value) {
+            if ($this->gender === UserGender::FEMALE->value) {
+                if ($this->marital_status === UserMaritalStatus::UNMARRIED->value) {
                     return 'Miss';
                 }
 

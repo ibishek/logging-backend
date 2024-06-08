@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('user_name')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('gender');
-            $table->string('marital_status');
+            $table->integer('gender')->nullable();
+            $table->integer('marital_status')->nullable();
             $table->string('honorific')->nullable();
             $table->rememberToken();
             $table->softDeletes();
