@@ -7,6 +7,7 @@ use App\Enums\QueuePriority;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\V1\Register\RegisterStoreRequest;
 use App\Jobs\V1\ProcessOTPGenerateJob;
+use App\Models\User;
 use App\Services\Writes\UserRegisterService;
 use Illuminate\Http\JsonResponse;
 
@@ -21,14 +22,7 @@ class RegisterController extends Controller
      */
     public function __invoke(RegisterStoreRequest $request): JsonResponse
     {
-        $userDTO = new UserDTO(
-            $request->first_name,
-            $request->last_name,
-            $request->email,
-            $request->password,
-            $request->gender,
-            $request->marital_status,
-        );
+        $userDTO = new UserDTO($request->only((new User)->getFillable()));
 
         $user = $this->registerService->create($userDTO);
 
